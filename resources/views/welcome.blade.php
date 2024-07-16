@@ -1,18 +1,128 @@
 @extends('layouts.guest.header')
 
 @section('content')
+    <style>
+        .custom-carousel-control {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .custom-carousel-control-icon {
+            color: white;
+            font-size: 24px;
+        }
+
+        .modal-content {
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .modal-body {
+            display: flex;
+            align-items: center;
+        }
+
+        .instagram-photo-container {
+            position: relative;
+        }
+
+        .instagram-photo-container img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .instagram-caption {
+            padding: 15px;
+        }
+
+        .instagram-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .instagram-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .instagram-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .instagram-actions button {
+            font-size: 14px;
+        }
+
+        .instagram-actions .btn {
+            margin-right: 10px;
+        }
+
+        .profile-img {
+            width: 40px;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+    <style>
+        .news-green-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-green-card .card-img-top {
+            width: 100%;
+            height: 200px;
+            /* Anda bisa menyesuaikan tinggi sesuai kebutuhan */
+            object-fit: contain;
+            background-color: white;
+        }
+
+        .news-green-card .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .news-green-card .card-title,
+        .news-green-card .card-text {
+            margin-bottom: 1rem;
+        }
+
+        .news-green-card .custom-button {
+            margin-top: auto;
+        }
+    </style>
+
+
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-body">
-                    <img src="{{ asset('storage/images/' . $dataPromo->image) }}" style="max-width: 100%; max-height: 80vh;" class="img-fluid" alt="Modal Image">
+                    <img src="{{ asset('storage/images/' . $dataPromo->image) }}" style="max-width: 100%; max-height: 80vh;"
+                        class="img-fluid" alt="Modal Image">
                 </div>
             </div>
         </div>
     </div>
-    
-    
+
+
 
     <div id="carouselExampleDark" class="carousel carousel-dark slide">
         <div class="carousel-indicators">
@@ -58,29 +168,44 @@
     </div>
 
     <section class="promo-section">
-        <div class="container">
-            <h2 class="text-center mb-4 fw-bold">Promo</h2>
-            <div class="row">
-                @foreach ($data as $index => $banner)
-                    <div class="col-md-6 col-lg-3 promo-card {{ $index >= 4 ? 'd-none' : '' }}">
-                        <div class="col text-center">
-                            <a href="#">
-                                <img src="{{ $banner['BANNER_IMAGE'] }}" class="card-img-top promo-img"
-                                    alt="{{ $banner['BANNER_NAME'] }}">
-                            </a>
-                            <div class="promo-desc">
-                                {{-- <h5>{{ $banner['BANNER_NAME'] }}</h5>
-                          <p>{{ $banner['BANNER_DESC'] }}</p> --}}
+        <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach ($data->chunk(4) as $chunkIndex => $chunk)
+                    <div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
+                        <div class="container">
+                            <div class="row">
+                                @foreach ($chunk as $banner)
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="text-center">
+                                            <a href="#">
+                                                <img src="{{ $banner['BANNER_IMAGE'] }}" class="d-block w-100 promo-img"
+                                                    alt="{{ $banner['BANNER_NAME'] }}">
+                                            </a>
+                                            <div class="promo-desc">
+                                                {{-- <h5>{{ $banner['BANNER_NAME'] }}</h5>
+                                                <p>{{ $banner['BANNER_DESC'] }}</p> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
-            <div class="col text-center">
-                <button id="read-more-btn" class="btn btn-primary mt-4 custom-button">Read More</button>
-            </div>
+            <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#promoCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon custom-carousel-control-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next custom-carousel-control" type="button" data-bs-target="#promoCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon custom-carousel-control-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </section>
+
 
 
 
@@ -135,7 +260,9 @@
                         <div class="row">
                             @foreach ($instagramItems->take(6) as $item)
                                 <div class="col-4 mb-3">
-                                    <img src="{{ $item['media_url'] }}" class="img-fluid">
+                                    <img src="{{ $item['media_url'] }}" class="img-fluid instagram-photo"
+                                        data-toggle="modal" data-target="#instagramModal"
+                                        data-caption="{{ $item['caption'] }}">
                                 </div>
                             @endforeach
                         </div>
@@ -161,7 +288,43 @@
         </div>
     </div>
 
+    <div class="modal fade" id="instagramModal" tabindex="-1" aria-labelledby="instagramModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="row no-gutters">
+                        <!-- Image section -->
+                        <div class="col-md-8">
+                            <img src="" class="img-fluid w-100" id="instagramPhoto">
+                        </div>
 
+                        <!-- Caption section -->
+                        <div class="col-md-4">
+                            <div class="p-3">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="images/logo.png" class="profile-img rounded-circle mr-2"
+                                        style="margin-right:10px" alt="Profile Image">
+                                    <strong> metmalbekasi</strong>
+                                </div>
+                                <p id="instagramCaption"></p>
+                                <hr>
+                                {{-- <div class="d-flex align-items-center">
+                                    <button class="btn btn-outline-primary btn-sm mr-2">
+                                        <i class="fas fa-heart"></i> Like
+                                    </button>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-comment"></i> Comment
+                                    </button>
+                                </div>
+                                <small class="text-muted">View all comments</small> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- jQuery dan Popper.js (diperlukan untuk komponen Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -196,6 +359,30 @@
         // localStorage.clear();
     </script>
 
+
+    <script>
+        $(document).ready(function() {
+            $('.instagram-photo').on('click', function() {
+                var photoSrc = $(this).attr('src');
+                var photoCaption = $(this).data('caption');
+                var postUrl = $(this).data('post-url');
+                $('#instagramPhoto').attr('src', photoSrc);
+                $('#instagramCaption').text(photoCaption);
+                $('#likeButton').data('url', postUrl);
+                $('#commentButton').data('url', postUrl);
+            });
+
+            $('#likeButton').on('click', function() {
+                var url = $(this).data('url');
+                window.open(url, '_blank');
+            });
+
+            $('#commentButton').on('click', function() {
+                var url = $(this).data('url');
+                window.open(url, '_blank');
+            });
+        });
+    </script>
 
     @include('layouts.guest.footer')
 @endsection

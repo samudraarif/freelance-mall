@@ -40,6 +40,8 @@ class DirectoryController extends Controller
             return $item['TENANT_STATUS'] === 'Active';
         });
 
+        $dataforFilter = clone $filteredData;
+
         // Additional filtering based on $category, $floor, $tenant_name
         if (!empty($category)) {
             $filteredData = $filteredData->filter(function ($item) use ($category) {
@@ -63,7 +65,10 @@ class DirectoryController extends Controller
             });
         }
 
-        return view('directory.directory', ['data' => $filteredData->values()]);
+        $dataCategory = $dataforFilter->unique('TENANT_CATEGORY');
+        $dataFloor = $dataforFilter->unique('TENANT_FLOOR');
+
+        return view('directory.directory', ['data' => $filteredData->values()], compact('dataCategory', 'dataFloor'));
     }
 
 

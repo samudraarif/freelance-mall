@@ -11,6 +11,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MagazineController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\PromoPopUpController;
+use App\Http\Controllers\AboutUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('destroy/{id}', 'destroy')->name('promopopup.destroy');
     });
 
+    Route::resource('aboutus', AboutUsController::class);
+
     Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
 
     Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
@@ -110,6 +113,4 @@ Route::get('/contact-us', function () {
 })->name('contactus');
 
 
-Route::get('/about-us', function () {
-    return view('aboutus.aboutus');
-});
+Route::get('/about-us', [AboutUsController::class, 'homepage'])->name('homepage');

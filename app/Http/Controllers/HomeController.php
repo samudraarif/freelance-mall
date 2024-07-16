@@ -52,7 +52,7 @@ class HomeController extends Controller
         $accessToken = $instagramToken->access_token; // Menggunakan access token yang sudah diperbarui
 
         $instagramParams = [
-            'fields' => 'id,caption,media_url',
+            'fields' => 'id,media_url,caption,username',
             'access_token' => $accessToken
         ];
 
@@ -65,6 +65,8 @@ class HomeController extends Controller
 
         // Assuming the data you need is under 'data' key in Instagram response
         $instagramItems = collect($instagramData['data']);
+
+        // dd($instagramItems);
 
         $dataNews = News::orderBy('created_at', 'DESC')->get();
 

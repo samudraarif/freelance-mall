@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Mail\TestEmail;
+use Illuminate\Support\Facades\Mail;
+
+
 
 class ContactController extends Controller
 {
@@ -30,6 +34,18 @@ class ContactController extends Controller
         return view('contactus.show', compact('contact'));
     }
 
+    public function sendTestEmail()
+    {
+        $details = [
+            'title' => 'Mail from Laravel',
+            'body' => 'This is a test email using SMTP Gmail'
+        ];
+
+        Mail::to('recipient@example.com')->send(new TestEmail($details));
+
+        return "Email has been sent.";
+    }
+
     /**
      * Menampilkan form kontak.
      *
@@ -52,13 +68,13 @@ class ContactController extends Controller
             'description' => 'required|string',
         ]);
 
-        // Simpan data ke dalam database menggunakan Eloquent
-        $contact = new Contact();
-        $contact->name = $validatedData['name'];
-        $contact->contact = $validatedData['contact'];
-        $contact->email = $validatedData['email'];
-        $contact->description = $validatedData['description'];
-        $contact->save();
+
+        $details = [
+            'title' => 'Mail from Customer',
+            'body' => $request->description
+        ];
+
+        Mail::to('samudraarif95@gmail.com')->send(new TestEmail($details));
 
         // Redirect dengan pesan sukses atau bisa disesuaikan
         return redirect()->route('contactus')->with('success', 'Thank you for contacting us!');

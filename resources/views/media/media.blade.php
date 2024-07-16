@@ -2,6 +2,37 @@
 
 
 @section('content')
+    <style>
+        .magazine-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .magazine-card .card-img-top {
+            width: 100%;
+            height: 200px;
+            /* Anda bisa menyesuaikan tinggi sesuai kebutuhan */
+            object-fit: contain;
+        }
+
+        .magazine-card .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .magazine-card .card-title,
+        .magazine-card .card-text {
+            margin-bottom: 1rem;
+        }
+
+        .magazine-card .custom-button {
+            margin-top: auto;
+        }
+    </style>
+
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -54,8 +85,8 @@
                         <div class="mediapromo-item">
                             <img src="{{ $banner['BANNER_IMAGE'] }}" class="img-fluid" alt="{{ $banner['BANNER_NAME'] }}">
                             <div class="mediapromo-overlay">
-                                <h5>{{ $banner['BANNER_NAME'] }}</h5>
-                                <p>{{ $banner['BANNER_DESC'] }}</p>
+                                {{-- <h5>{{ $banner['BANNER_NAME'] }}</h5>
+                                <p>{{ $banner['BANNER_DESC'] }}</p> --}}
                             </div>
                         </div>
                     </div>
@@ -71,21 +102,21 @@
                 @foreach ($dataMagazine as $index => $item)
                     <div class="col-md-4 {{ $index >= 3 ? 'd-none' : '' }}">
                         <div class="card magazine-card">
-                            <img src="{{ asset('storage/images/' . $item->image) }}" class="card-img-top" alt="Magazine Cover 1">
+                            <img src="{{ asset('storage/images/' . $item->image) }}" class="card-img-top"
+                                alt="Magazine Cover 1">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $item->title }}</h5>
                                 <p class="card-text">{{ Str::words($item->description, 10, '...') }}</p>
                                 <button class="btn btn-primary custom-button">View</button>
-                                <a href="{{ asset('storage/pdfs/'.$item->pdf_url) }}" class="btn btn-secondary custom-button">
-                                     Download
-                                </a>
-                                <button class="btn btn-info custom-button">Previous Edition</button>
+                                <a href="{{ asset('storage/pdfs/' . $item->pdf_url) }}"
+                                    class="btn btn-secondary custom-button">Download</a>
+                                {{-- <button class="btn btn-info custom-button">Previous Edition</button> --}}
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
-    </section>    
+    </section>
     @include('layouts.guest.footer')
 @endsection

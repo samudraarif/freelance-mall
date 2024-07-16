@@ -34,11 +34,11 @@
         <span>News</span></a>
     </li>
 
-    <li class="nav-item">
+    {{-- <li class="nav-item">
       <a class="nav-link" href="{{ route('contact.index')}}">
         <i class="far fa-comment-dots"></i>
         <span>Message Customer</span></a>
-    </li>
+    </li> --}}
 
     <li class="nav-item">
       <a class="nav-link" href="{{ route('promopopup.index')}}">

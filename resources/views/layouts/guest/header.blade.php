@@ -22,11 +22,11 @@
                     <img src="images/logo.png" alt="Logo" class="img-fluid">
                 </div>
                 <!-- Opening Hours -->
-                <div class="col-md-2 d-none d-md-block">
+                <div class="col-md-auto d-none d-md-block">
                     <p class="mb-0 header-text"><i class="fa fa-shopping-cart me-2"></i>Opening Hours: 10.00 - 20.00</p>
                 </div>
                 <!-- Phone Number -->
-                <div class="col-md-2 d-none d-md-block">
+                <div class="col-md-auto d-none d-md-block">
                     <p class="mb-0 header-text"><i class="fas fa-mobile-alt me-2"></i>(021) 855 5555 </p>
                 </div>
                 <!-- Address -->

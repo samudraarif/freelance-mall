@@ -2,10 +2,31 @@
 
 @section('content')
 
+<style>
+    .facilities-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .facilities-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .facilities-card .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .facilities-card .card-title {
+        margin-top: auto;
+    }
+</style>
+
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="images/menu/slider.jpg" class="d-block w-100 h-80" alt="Slide 1">
+            <img src="{{ asset('images/menu/slider.jpg') }}" class="d-block w-100 h-80" alt="Slide 1">
             <div class="carousel-caption d-none d-md-block">
                 <h1 class="fw-bold">Facilities</h1>
             </div>
@@ -25,9 +46,9 @@
     <div class="container">
         <div class="row">
             <!-- Gojek dan GoCar Instant -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/gojek.jpg" class="card-img-top" alt="Gojek dan GoCar Instant">
+                    <img src="{{ asset('images-facilities/gojek.jpg') }}" class="card-img-top" alt="Gojek dan GoCar Instant">
                     <div class="card-body">
                         <h5 class="card-title">Gojek dan GoCar Instant</h5>
                         <p class="card-text">Gocar Instant tersedia untuk memudahkan akomodasi customer setia Metropolitan Mall Bekasi di Pintu Utara 1 dan GoJek Instant tersedia di area Pintu Timur.</p>
@@ -36,9 +57,9 @@
             </div>
 
             <!-- Shuttle Bus -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/shuttlebus.jpg" class="card-img-top" alt="Shuttle Bus">
+                    <img src="{{ asset('images-facilities/shuttlebus.jpg') }}" class="card-img-top" alt="Shuttle Bus">
                     <div class="card-body">
                         <h5 class="card-title">Shuttle Bus</h5>
                         <p class="card-text">Tersedia 2 buah free shuttle bus di Pintu Utara 1 Metropolitan Mall Bekasi yang siap untuk mengantarkan anda ke Grand Metropolitan Bekasi maupun sebaliknya.</p>
@@ -47,9 +68,9 @@
             </div>
 
             <!-- Galeri PMI -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/pmi.jpg" class="card-img-top" alt="Galeri PMI">
+                    <img src="{{ asset('images-facilities/pmi.jpg') }}" class="card-img-top" alt="Galeri PMI">
                     <div class="card-body">
                         <h5 class="card-title">Galeri PMI</h5>
                         <p class="card-text">Galeri PMI disediakan di Metropolitan Mall Bekasi untuk para customer setia yang ingin mendonorkan darahnya untuk sesama. Galeri PMI tersedia di Lt 3.</p>
@@ -58,9 +79,9 @@
             </div>
 
             <!-- Taxi Queue -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/taxi.jpg" class="card-img-top" alt="Taxi Queue">
+                    <img src="{{ asset('images-facilities/taxi.jpg') }}" class="card-img-top" alt="Taxi Queue">
                     <div class="card-body">
                         <h5 class="card-title">Taxi Queue</h5>
                         <p class="card-text">Taxi Queue tersedia untuk memudahkan akomodasi customer setia Metropolitan Mall Bekasi. Taxi resmi yang kami sediakan merupakan armada terbaik dari Blue Bird.</p>
@@ -69,9 +90,9 @@
             </div>
 
             <!-- Nursery Room -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/baby.jpg" class="card-img-top" alt="Nursery Room">
+                    <img src="{{ asset('images-facilities/baby.jpg') }}" class="card-img-top" alt="Nursery Room">
                     <div class="card-body">
                         <h5 class="card-title">Nursery Room</h5>
                         <p class="card-text">Nursery Room di area bermain anak Metropolitan Mall Bekasi Lt. 3 memiliki 3 bilik menyusui dan baby tuffel untuk ganti popok.</p>
@@ -80,9 +101,9 @@
             </div>
 
             <!-- Musholla -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/musholla.jpg" class="card-img-top" alt="Musholla">
+                    <img src="{{ asset('images-facilities/musholla.jpg') }}" class="card-img-top" alt="Musholla">
                     <div class="card-body">
                         <h5 class="card-title">Musholla</h5>
                         <p class="card-text">Musholla disediakan untuk customer setia kami yang beragama islam untuk menjalankan sholat 5 waktu. Sholat Jumat biasanya dilaksanakan di Musholla Lt 3.</p>
@@ -91,9 +112,9 @@
             </div>
 
             <!-- Mobile Charging Station -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/chargingcar.jpg" class="card-img-top" alt="Mobile Charging Station">
+                    <img src="{{ asset('images-facilities/chargingcar.jpeg') }}" class="card-img-top" alt="Mobile Charging Station">
                     <div class="card-body">
                         <h5 class="card-title">Mobile Charging Station</h5>
                         <p class="card-text">Kami menyediakan charging station untuk tipe handphone Samsung, Apple dan Type C agar anda dapat nyaman berbelanja dengan handphone tetap menyala.</p>
@@ -101,10 +122,10 @@
                 </div>
             </div>
 
-                        <!-- Free Wifi -->
-                        <div class="col-md-4">
+            <!-- Free Wifi -->
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/freewifi.jpg" class="card-img-top" alt="Free Wifi">
+                    <img src="{{ asset('images-facilities/freewifi.jpg') }}" class="card-img-top" alt="Free Wifi">
                     <div class="card-body">
                         <h5 class="card-title">Free Wifi</h5>
                         <p class="card-text">Wifi gratis tersedia di seluruh area Metropolitan Mall Bekasi dengan nama metmal_free@wifi.id. Kecepatannya mencapai 9 Mbps.</p>
@@ -113,9 +134,9 @@
             </div>
 
             <!-- Metland Card Gallery -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/metland.jpg" class="card-img-top" alt="Metland Card Gallery">
+                    <img src="{{ asset('images-facilities/metland.jpg') }}" class="card-img-top" alt="Metland Card Gallery">
                     <div class="card-body">
                         <h5 class="card-title">Metland Card Gallery</h5>
                         <p class="card-text">Metland Card Gallery merupakan tempat pembuatan serta posting poin Privilege Card PT Metropolitan Land Tbk yang bisa digunakan di seluruh unit Metland.</p>
@@ -124,9 +145,9 @@
             </div>
 
             <!-- ATM Center -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/atm.jpg" class="card-img-top" alt="ATM Center">
+                    <img src="{{ asset('images-facilities/atm.jpg') }}" class="card-img-top" alt="ATM Center">
                     <div class="card-body">
                         <h5 class="card-title">ATM Center</h5>
                         <p class="card-text">Tersedia fasilitas ATM Center di Metropolitan Mall Bekasi yang siap mendukung kegiatan perbankan Anda dengan mudah dan nyaman.</p>
@@ -135,9 +156,9 @@
             </div>
 
             <!-- Toilet -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/toilet.jpg" class="card-img-top" alt="Toilet">
+                    <img src="{{ asset('images-facilities/toilet.jpg') }}" style="object-fit: contain" class="card-img-top" alt="Toilet">
                     <div class="card-body">
                         <h5 class="card-title">Toilet</h5>
                         <p class="card-text">Toilet untuk pria dan wanita tersedia di setiap lantai untuk kenyamanan customer setia Metropolitan Mall Bekasi ketika berbelanja.</p>
@@ -146,9 +167,9 @@
             </div>
 
             <!-- Difabel Toilet -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/disabledtoilet.jpg" class="card-img-top" alt="Difabel Toilet">
+                    <img src="{{ asset('images-facilities/disabledtoilet.jpg') }}" class="card-img-top" alt="Difabel Toilet">
                     <div class="card-body">
                         <h5 class="card-title">Difabel Toilet</h5>
                         <p class="card-text">Toilet untuk para customer setia yang menggunakan kursi roda atau berkebutuhan khusus dengan area yang lebih luas dan nyaman.</p>
@@ -157,9 +178,9 @@
             </div>
 
             <!-- Baby Stroller -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/babystroller.jpg" class="card-img-top" alt="Baby Stroller">
+                    <img src="{{ asset('images-facilities/babystroller.jpg') }}" class="card-img-top" alt="Baby Stroller">
                     <div class="card-body">
                         <h5 class="card-title">Baby Stroller</h5>
                         <p class="card-text">Kami utamakan kenyamanan berbelanja Anda dengan Baby Stroller untuk anak Anda, memberikan pengalaman tanpa hambatan.</p>
@@ -167,10 +188,10 @@
                 </div>
             </div>
 
-                        <!-- Wheel Chair -->
-                        <div class="col-md-4">
+            <!-- Wheel Chair -->
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/wheelchair.jpg" class="card-img-top" alt="Wheel Chair">
+                    <img src="{{ asset('images-facilities/wheelchair.jpg') }}" style="object-fit: contain" class="card-img-top" alt="Wheel Chair">
                     <div class="card-body">
                         <h5 class="card-title">Wheel Chair</h5>
                         <p class="card-text">Kursi roda kami sediakan khusus untuk customer setia kami dengan kebutuhan khusus atau lanjut usia agar tetap nyaman selama berbelanja.</p>
@@ -179,9 +200,9 @@
             </div>
 
             <!-- First Aid Clinic -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/firstaid.jpg" class="card-img-top" alt="First Aid Clinic">
+                    <img src="{{ asset('images-facilities/firstaid.jpg') }}" class="card-img-top" alt="First Aid Clinic">
                     <div class="card-body">
                         <h5 class="card-title">First Aid Clinic</h5>
                         <p class="card-text">First Aid Clinic tersedia untuk memberikan pertolongan pertama kepada customer yang mengalami kecelakaan kecil atau sakit di area Metropolitan Mall Bekasi.</p>
@@ -190,9 +211,9 @@
             </div>
 
             <!-- Customer Service -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/customerservice.jpg" class="card-img-top" alt="Customer Service">
+                    <img src="{{ asset('images-facilities/customerservice.jpg') }}" class="card-img-top" alt="Customer Service">
                     <div class="card-body">
                         <h5 class="card-title">Customer Service</h5>
                         <p class="card-text">Tim Customer Service kami siap bantu dengan info seputar Metropolitan Mall Bekasi dan Metland Card.</p>
@@ -201,9 +222,9 @@
             </div>
 
             <!-- Metland Member Parking -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/MM_MEMBER2.png" class="card-img-top" alt="Metland Member Parking">
+                    <img src="{{ asset('images-facilities/MM_MEMBER2.png') }}" class="card-img-top" style="object-fit: contain" alt="Metland Member Parking">
                     <div class="card-body">
                         <h5 class="card-title">Metland Member Parking</h5>
                         <p class="card-text">Di area parkir mobil, telah disediakan tempat parkir khusus yang eksklusif untuk para pemegang kartu Metland Card.</p>
@@ -212,9 +233,9 @@
             </div>
 
             <!-- Motorcyle Parking -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/motor.png" class="card-img-top" alt="Motorcyle Parking">
+                    <img src="{{ asset('images-facilities/motor.png') }}" style="object-fit: contain" class="card-img-top" alt="Motorcyle Parking">
                     <div class="card-body">
                         <h5 class="card-title">Motorcyle Parking</h5>
                         <p class="card-text">Parkir sepeda motor tersedia di Metropolitan Mall Bekasi yang aman dan nyaman.</p>
@@ -223,9 +244,9 @@
             </div>
 
             <!-- Car Parking -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/carpark.jpg" class="card-img-top" alt="Car Parking">
+                    <img src="{{ asset('images-facilities/carpark.jpg') }}" class="card-img-top" alt="Car Parking">
                     <div class="card-body">
                         <h5 class="card-title">Car Parking</h5>
                         <p class="card-text">Disediakan parkir mobil yang aman dan nyaman untuk setiap customer.</p>
@@ -233,10 +254,10 @@
                 </div>
             </div>
 
-                        <!-- Bike Parking -->
-                        <div class="col-md-4">
+            <!-- Bike Parking -->
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/bike2.png" class="card-img-top" alt="Bike Parking">
+                    <img src="{{ asset('images-facilities/bike2.png') }}" style="object-fit: contain" class="card-img-top" alt="Bike Parking">
                     <div class="card-body">
                         <h5 class="card-title">Bike Parking</h5>
                         <p class="card-text">Tersedia lahan parkir sepeda yang aman untuk Anda yang hobi bersepeda.</p>
@@ -245,9 +266,9 @@
             </div>
 
             <!-- Ladies Parking -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/ladiespng" class="card-img-top" alt="Ladies Parking">
+                    <img src="{{ asset('images-facilities/ladies.png') }}" style="object-fit: contain" class="card-img-top" alt="Ladies Parking">
                     <div class="card-body">
                         <h5 class="card-title">Ladies Parking</h5>
                         <p class="card-text">Ada parkir khusus mobil wanita untuk pelanggan setia kami.</p>
@@ -256,9 +277,9 @@
             </div>
 
             <!-- Motorcyle Parking (250cc) -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/motormoge.png" class="card-img-top" alt="Motorcyle Parking (250cc)">
+                    <img src="{{ asset('images-facilities/motormoge.png') }}" style="object-fit: contain" class="card-img-top" alt="Motorcyle Parking (250cc)">
                     <div class="card-body">
                         <h5 class="card-title">Motorcyle Parking (250cc)</h5>
                         <p class="card-text">Parkiran untuk sepeda motor besar dengan minimal 250cc yang nyaman.</p>
@@ -267,9 +288,9 @@
             </div>
 
             <!-- Valet Parking -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card facilities-card">
-                    <img src="images-facilities/valet.png" class="card-img-top" alt="Valet Parking">
+                    <img src="{{ asset('images-facilities/valet.png') }}" style="object-fit: contain" class="card-img-top" alt="Valet Parking">
                     <div class="card-body">
                         <h5 class="card-title">Valet Parking</h5>
                         <p class="card-text">Manfaatkan layanan valet kami untuk parkir yang lebih cepat dan aman.</p>
