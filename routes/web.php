@@ -35,8 +35,8 @@ Route::get('/magazine-detail/{id}', [MagazineController::class, 'detail'])->name
 
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('register', 'register')->name('register');
-    Route::post('register', 'registerSave')->name('register.save');
+    // Route::get('register', 'register')->name('register');
+    // Route::post('register', 'registerSave')->name('register.save');
     Route::get('login', 'login')->name('login');
     Route::post('login', 'loginAction')->name('login.action');
 
@@ -44,9 +44,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'getDataDashboard'])->name('dashboard');
 
     Route::controller(TenantController::class)->prefix('tenant')->group(function () {
         Route::get('', 'index')->name('tenant');
@@ -91,6 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('aboutus', AboutUsController::class);
 
     Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
+    Route::post('/profile-update', [App\Http\Controllers\AuthController::class, 'updateProfile'])->name('profile.update');
 
     Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
     Route::get('/contacts/{id}', [ContactController::class, 'show'])->name('contact.show');

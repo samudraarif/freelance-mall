@@ -74,9 +74,6 @@
                             <a class="nav-link" href="{{url('/facilities')}}">Facilities</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Career</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{url('about-us')}}">About Us</a>
                         </li>
                         <li class="nav-item">

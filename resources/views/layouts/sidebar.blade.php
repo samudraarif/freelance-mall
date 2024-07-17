@@ -17,12 +17,6 @@
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
-
-    {{-- <li class="nav-item">
-      <a class="nav-link" href="{{ route('tenant')}}">
-        <i class="fas fa-user-friends"></i>
-        <span>Tenant</span></a>
-    </li> --}}
     <li class="nav-item">
       <a class="nav-link" href="{{ route('magazine.index')}}">
         <i class="fas fa-book"></i>
@@ -39,11 +33,18 @@
         <i class="far fa-comment-dots"></i>
         <span>Message Customer</span></a>
     </li>
+    
 
     <li class="nav-item">
       <a class="nav-link" href="{{ route('promopopup.index')}}">
-        <i class="far fa-comment-dots"></i>
+        <i class="fa fa-star"></i>
         <span>Promo Pop Up</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('aboutus.index')}}">
+        <i class="fa fa-address-card"></i>
+        <span>About Us</span></a>
     </li>
 
     <li class="nav-item">

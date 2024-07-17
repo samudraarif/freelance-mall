@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\News;
 use App\Models\Promo;
 use GuzzleHttp\Client;
@@ -9,6 +10,8 @@ use App\Models\InstagramToken;
 use App\Models\Magazine;
 use App\Models\PromoPopUp;
 use Illuminate\Http\Request;
+
+use function Ramsey\Uuid\v1;
 
 class HomeController extends Controller
 {
@@ -148,5 +151,19 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getDataDashboard()
+    {
+        $dataDashboard = [
+            'news' => News::count(),
+            'contact' => Contact::count(),
+            'magazine' => Magazine::count(),
+        ];
+
+        // dd($dataDashboard);
+
+
+        return view('dashboard', compact('dataDashboard'));
     }
 }

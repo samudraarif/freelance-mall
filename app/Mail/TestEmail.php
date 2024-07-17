@@ -26,7 +26,7 @@ class TestEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Test Email Subject')
+        return $this->subject('Email From Customer')
             ->view('emails.test'); // Pastikan ini sesuai dengan lokasi dan nama view
     }
 

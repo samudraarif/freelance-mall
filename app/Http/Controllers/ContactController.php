@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Contact;
 use App\Mail\TestEmail;
+use App\Models\Contact;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -69,12 +70,30 @@ class ContactController extends Controller
         ]);
 
 
+        // Simpan data ke dalam database menggunakan Eloquent
+        $contact = new Contact();
+        $contact->name = $validatedData['name'];
+        $contact->contact = $validatedData['contact'];
+        $contact->email = $validatedData['email'];
+        $contact->description = $validatedData['description'];
+        $contact->save();
+
+
         $details = [
             'title' => 'Mail from Customer',
-            'body' => $request->description
+            'name' => $request->name,
+            'contact' => $request->contact,
+            'email' => $request->email,
+            'description' => $request->description
         ];
 
-        Mail::to('samudraarif95@gmail.com')->send(new TestEmail($details));
+        try {
+            Mail::to('samudraarif95@gmail.com')->send(new TestEmail($details));
+        } catch (\Exception $e) {
+            // Log the error message for debugging purposes
+            Log::error('Error sending email: ' . $e->getMessage());
+            // You can also return a response or take other actions here if needed
+        }
 
         // Redirect dengan pesan sukses atau bisa disesuaikan
         return redirect()->route('contactus')->with('success', 'Thank you for contacting us!');

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Show Product')
+@section('title', 'Detail About Us')
 
 @section('contents')
 {{-- title
@@ -26,7 +26,6 @@ pdf_url --}}
                     <strong>Description:</strong>
                     {{ $aboutu->description }}
                 </div>
-                <a href="{{ route('aboutus.index') }}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>

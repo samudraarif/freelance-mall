@@ -44,7 +44,11 @@ author --}}
                                         @endif
                                     </td>
                                     <td class="align-middle">{{ $rs->title }}</td>
-                                    <td class="align-middle">{{ $rs->status }}</td>
+                                    @if ($rs->status == 1)
+                                        <td class="align-middle">Active</td>
+                                    @else
+                                        <td class="align-middle">Inactive</td>
+                                    @endif
                                     <td class="align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <a href="{{ route('promopopup.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>

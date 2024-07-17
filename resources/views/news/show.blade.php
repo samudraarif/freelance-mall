@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Show Product')
+@section('title', 'Detail News')
 
 @section('contents')
 {{-- title
