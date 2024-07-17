@@ -29,7 +29,8 @@ use App\Http\Controllers\AboutUsController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::post('/contact-submit', [ContactController::class, 'submitContactForm'])->name('contact.submit');
-
+Route::get('/news-detail/{id}', [NewsController::class, 'detail'])->name('news.detail');
+Route::get('/magazine-detail/{id}', [MagazineController::class, 'detail'])->name('magazine.detail');
 // Route untuk menampilkan semua kontak dan detail kontak
 
 

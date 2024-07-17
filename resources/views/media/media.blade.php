@@ -61,14 +61,14 @@
                 @foreach ($dataNews as $index => $news)
                     <div class="col-md-12 mb-4 {{ $index >= 2 ? 'd-none' : '' }}">
                         <div class="row align-items-center">
-                            <div class="col-md-4 mb-4 mb-md-2">
-                                <img src="{{ asset('storage/images/' . $news->image) }}" class="img-fluid"
+                            <div class="col-md-4 mb-4 mb-md-2 d-flex justify-content-center">
+                                <img src="{{ asset('storage/images/' . $news->image) }}" style="max-height: 300px" class="img-fluid"
                                     alt="News Image 1">
                             </div>
                             <div class="col-md-6" style="color: #38877f;">
                                 <h2 class="fw-bold">{{ $news->title }}</h2>
                                 <p>{{ Str::words($news->description, 10, '...') }}</p>
-                                <a href="#" class="btn btn-primary mt-4 custom-button">Read More</a>
+                                <a href="{{ route('news.detail', $news->id) }}" class="btn btn-primary mt-4 custom-button">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $item->title }}</h5>
                                 <p class="card-text">{{ Str::words($item->description, 10, '...') }}</p>
-                                <button class="btn btn-primary custom-button">View</button>
+                                <a href="{{ route('magazine.detail', $item->id) }}"
+                                    class="btn btn-primary custom-button">View</a>
                                 <a href="{{ asset('storage/pdfs/' . $item->pdf_url) }}"
                                     class="btn btn-secondary custom-button">Download</a>
                                 {{-- <button class="btn btn-info custom-button">Previous Edition</button> --}}

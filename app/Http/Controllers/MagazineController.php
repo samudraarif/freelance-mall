@@ -122,4 +122,10 @@ class MagazineController extends Controller
 
         return redirect()->route('magazine.index')->with('success', 'Magazine article deleted successfully');
     }
+
+    public function detail($id)
+    {
+        $magazine = Magazine::findOrFail($id);
+        return view('magazine.detail', compact('magazine'));
+    }
 }

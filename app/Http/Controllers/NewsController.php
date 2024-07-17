@@ -104,4 +104,10 @@ class NewsController extends Controller
 
         return redirect()->route('news.index')->with('success', 'News article deleted successfully');
     }
+
+    public function detail($id)
+    {
+        $news = News::findOrFail($id);
+        return view('news.detail', compact('news'));
+    }
 }

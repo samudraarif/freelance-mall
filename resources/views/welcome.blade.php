@@ -107,16 +107,33 @@
         .news-green-card .custom-button {
             margin-top: auto;
         }
+
+        .modal-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            /* Add padding for margin around the image */
+        }
+
+        .modal-body img {
+            max-height: 80vh;
+            /* Adjust as needed to fit the viewport */
+            max-width: 100%;
+            object-fit: contain;
+            /* Preserve aspect ratio */
+            margin: auto;
+            /* Center the image */
+        }
     </style>
 
 
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <img src="{{ asset('storage/images/' . $dataPromo->image) }}" style="max-width: 100%; max-height: 80vh;"
-                        class="img-fluid" alt="Modal Image">
+                    <img src="{{ asset('storage/images/' . $dataPromo->image) }}" class="img-fluid" alt="Modal Image">
                 </div>
             </div>
         </div>
@@ -204,6 +221,9 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+        <div class="col text-center">
+            <a href="{{ url('/event') }}" id="read-more-btn" class="btn btn-primary mt-4 custom-button">Read More</a>
+        </div>
     </section>
 
 
@@ -224,18 +244,22 @@
             <div class="row justify-content-center">
                 @foreach ($dataNews as $index => $item)
                     <div class="col-md-3 {{ $index >= 4 ? 'd-none' : '' }}">
-                        <div class="card news-green-card">
-                            <img src="{{ asset('storage/images/' . $item->image) }}" class="card-img-top" alt="Gambar 1">
-                            <div class="card-body">
-                                <h2 class="text-center fw-bold">{{ $item->title }}</h2>
-                                <p class="card-text">{{ Str::words($item->description, 10, '...') }}</p>
+                        <a href="{{ route('news.detail', $item->id) }}" class="text-decoration-none">
+                            <div class="card news-green-card">
+                                <img src="{{ asset('storage/images/' . $item->image) }}" class="card-img-top"
+                                    alt="Gambar 1">
+                                <div class="card-body">
+                                    <h2 class="text-center fw-bold">{{ $item->title }}</h2>
+                                    <p class="card-text">{{ Str::words($item->description, 10, '...') }}</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
         </div>
     </section>
+
 
     <section class="py-5">
         <div class="container">
@@ -288,7 +312,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="instagramModal" tabindex="-1" aria-labelledby="instagramModalLabel"
+    {{-- <div class="modal fade" id="instagramModal" tabindex="-1" aria-labelledby="instagramModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -309,22 +333,13 @@
                                 </div>
                                 <p id="instagramCaption"></p>
                                 <hr>
-                                {{-- <div class="d-flex align-items-center">
-                                    <button class="btn btn-outline-primary btn-sm mr-2">
-                                        <i class="fas fa-heart"></i> Like
-                                    </button>
-                                    <button class="btn btn-outline-primary btn-sm">
-                                        <i class="fas fa-comment"></i> Comment
-                                    </button>
-                                </div>
-                                <small class="text-muted">View all comments</small> --}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- jQuery dan Popper.js (diperlukan untuk komponen Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -334,13 +349,6 @@
 
     <script>
         $('#imageModal').modal('show');
-        document.getElementById('read-more-btn').addEventListener('click', function() {
-            var hiddenCards = document.querySelectorAll('.promo-card.d-none');
-            hiddenCards.forEach(function(card) {
-                card.classList.remove('d-none');
-            });
-            this.style.display = 'none'; // Sembunyikan tombol "Read More" setelah diklik
-        });
 
         document.addEventListener("DOMContentLoaded", function() {
             // Periksa apakah modal sudah ditampilkan sebelumnya
@@ -360,7 +368,7 @@
     </script>
 
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('.instagram-photo').on('click', function() {
                 var photoSrc = $(this).attr('src');
@@ -382,7 +390,15 @@
                 window.open(url, '_blank');
             });
         });
-    </script>
+    </script> --}}
 
+    <script>
+        $(document).ready(function() {
+            $('.instagram-photo').on('click', function() {
+                var postUrl = 'https://www.instagram.com/metmalbekasi/';
+                window.open(postUrl, '_blank');
+            });
+        });
+    </script>
     @include('layouts.guest.footer')
 @endsection

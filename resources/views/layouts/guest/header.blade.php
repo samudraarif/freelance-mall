@@ -19,7 +19,7 @@
             <div class="row align-items-center">
                 <!-- Logo -->
                 <div class="col-md-2 logo-container text-center text-md-start">
-                    <img src="images/logo.png" alt="Logo" class="img-fluid">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid">
                 </div>
                 <!-- Opening Hours -->
                 <div class="col-md-auto d-none d-md-block">
