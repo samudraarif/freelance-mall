@@ -79,6 +79,10 @@ class HomeController extends Controller
             ->where('status', '1')
             ->first();
 
+        if (!isset($dataPromo)) {
+            $dataPromo = '';
+        }
+
         return view('welcome', compact('dataNews', 'dataPromo', 'dataMagazine', 'instagramItems'), ['data' => $filteredData->values()]);
     }
 

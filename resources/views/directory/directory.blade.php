@@ -4,7 +4,7 @@
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="images/menu/slider.jpg" class="d-block w-100 h-80" alt="Slide 1">
+                <img src="{{ asset('images/mall-home2.jpg') }}" class="d-block w-100 h-80" alt="Slide 1">
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="fw-bold">Directory</h1>
                 </div>
@@ -134,12 +134,12 @@
 
             pageItems.forEach(item => {
                 const col = document.createElement('div');
-                col.classList.add('col-md-auto');
+                 col.classList.add('col-md-auto', 'd-flex', 'justify-content-center', 'align-items-center');
 
                 const card = document.createElement('div');
                 card.classList.add('card', 'directory-green-card');
-                card.style.width = '18rem'; // Set fixed width
-                card.style.height = '300px'; // Set fixed height
+                card.style.width = '200px'; // Set fixed width
+                card.style.height = '400px'; // Set fixed height
 
                 const imgContainer = document.createElement('div');
                 imgContainer.style.height = '250px'; // Fixed height for image container
@@ -152,7 +152,7 @@
                 img.src = item.TENANT_LOGO;
                 img.alt = item.TENANT_NAME;
                 img.style.width = '100%'; // Fixed width for image
-                img.style.height = '150px'; // Fixed height for image
+                img.style.height = '200px'; // Fixed height for image
                 img.style.objectFit = 'contain';
 
                 imgContainer.appendChild(img);

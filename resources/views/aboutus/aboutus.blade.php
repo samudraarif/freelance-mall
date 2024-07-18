@@ -5,7 +5,7 @@
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="images/menu/slider.jpg" class="d-block w-100 h-80" alt="Slide 1">
+            <img src="{{ asset('images/mall-home2.jpg') }}" class="d-block w-100 h-80" alt="Slide 1">
             <div class="carousel-caption d-none d-md-block">
                 <h1 class="fw-bold"></h1>
             </div>

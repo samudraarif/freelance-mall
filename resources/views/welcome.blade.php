@@ -129,16 +129,18 @@
 
 
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
-    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <img src="{{ asset('storage/images/' . $dataPromo->image) }}" class="img-fluid" alt="Modal Image">
+
+    @if ($dataPromo)
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="{{ asset('storage/images/' . $dataPromo->image) }}" class="img-fluid" alt="Modal Image">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    @endif
 
 
     <div id="carouselExampleDark" class="carousel carousel-dark slide">
@@ -186,13 +188,37 @@
 
     <section class="promo-section">
         <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
+            <div class="carousel-inner desktop-view">
                 @foreach ($data->chunk(4) as $chunkIndex => $chunk)
                     <div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
                         <div class="container">
                             <div class="row">
                                 @foreach ($chunk as $banner)
                                     <div class="col-md-6 col-lg-3">
+                                        <div class="text-center">
+                                            <a href="#">
+                                                <img src="{{ $banner['BANNER_IMAGE'] }}" class="d-block w-100 promo-img"
+                                                    alt="{{ $banner['BANNER_NAME'] }}">
+                                            </a>
+                                            <div class="promo-desc">
+                                                {{-- <h5>{{ $banner['BANNER_NAME'] }}</h5>
+                                                <p>{{ $banner['BANNER_DESC'] }}</p> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="carousel-inner mobile-view d-none">
+                @foreach ($data->chunk(1) as $chunkIndex => $chunk)
+                    <div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
+                        <div class="container">
+                            <div class="row">
+                                @foreach ($chunk as $banner)
+                                    <div class="col-12">
                                         <div class="text-center">
                                             <a href="#">
                                                 <img src="{{ $banner['BANNER_IMAGE'] }}" class="d-block w-100 promo-img"
@@ -227,8 +253,6 @@
     </section>
 
 
-
-
     <div id="carouselExampleDark" class="carousel carousel-dark slide">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -243,7 +267,7 @@
             <h2 class="text-center mb-4">News</h2>
             <div class="row justify-content-center">
                 @foreach ($dataNews as $index => $item)
-                    <div class="col-md-3 {{ $index >= 4 ? 'd-none' : '' }}">
+                    <div class="col-md-3 mt-3 {{ $index >= 4 ? 'd-none' : '' }}">
                         <a href="{{ route('news.detail', $item->id) }}" class="text-decoration-none">
                             <div class="card news-green-card">
                                 <img src="{{ asset('storage/images/' . $item->image) }}" class="card-img-top"
@@ -277,7 +301,7 @@
     <div class="container">
         <div class="row section-mgz">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <!-- Bagian kiri dengan judul "Follow Us" dan gambar -->
                     <div class="text-center vertical-line d-none d-md-block">
                         <h2 class="fw-bold">Follow Us</h2>
@@ -399,6 +423,21 @@
                 window.open(postUrl, '_blank');
             });
         });
+    </script>
+
+    <script>
+        function adjustCarouselView() {
+            if (window.innerWidth <= 767.98) {
+                document.querySelector('.desktop-view').classList.add('d-none');
+                document.querySelector('.mobile-view').classList.remove('d-none');
+            } else {
+                document.querySelector('.desktop-view').classList.remove('d-none');
+                document.querySelector('.mobile-view').classList.add('d-none');
+            }
+        }
+
+        window.addEventListener('resize', adjustCarouselView);
+        window.addEventListener('load', adjustCarouselView);
     </script>
     @include('layouts.guest.footer')
 @endsection
