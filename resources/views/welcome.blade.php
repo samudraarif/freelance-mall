@@ -150,7 +150,7 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="10000">
-                <img src="images/slide1.svg" class="d-block w-100" alt="slider1">
+                <img src="{{ asset('images/mall-home.jpg') }}" class="d-block w-100" alt="slider1">
                 <div class="carousel-caption d-none d-md-block text-end text-white">
                     <h1 class="fw-bold" style="font-size: 80px; text-align: right;"> METROPOLITAN</h1>
                     <h1 class="fw-bold" style="font-size: 80px; text-align: right;">MALL BEKASI</h1>
@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="2000">
-                <img src="images/slide1.svg" class="d-block w-100" alt="slider1">
+                <img src="{{ asset('images/mall-home.jpg') }}" class="d-block w-100" alt="slider1">
                 <div class="carousel-caption d-none d-md-block text-end text-white">
                     <h1 class="fw-bold" style="font-size: 80px; text-align: right;"> METROPOLITAN</h1>
                     <h1 class="fw-bold" style="font-size: 80px; text-align: right;">MALL BEKASI</h1>
@@ -166,7 +166,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="images/slide1.svg" class="d-block w-100" alt="slider1">
+                <img src="{{ asset('images/mall-home.jpg') }}" class="d-block w-100" alt="slider1">
                 <div class="carousel-caption d-none d-md-block text-end text-white">
                     <h1 class="fw-bold" style="font-size: 80px; text-align: right;"> METROPOLITAN</h1>
                     <h1 class="fw-bold" style="font-size: 80px; text-align: right;">MALL BEKASI</h1>
@@ -232,7 +232,7 @@
     <div id="carouselExampleDark" class="carousel carousel-dark slide">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="images/menu/metlandcard.jpg" class="d-block w-100">
+                <img src="{{ asset('images/metland.jpg') }}" class="d-block w-100">
             </div>
         </div>
     </div>
