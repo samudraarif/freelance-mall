@@ -40,6 +40,11 @@
         <i class="fa fa-star"></i>
         <span>Promo Pop Up</span></a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('form-link') }}">
+        <i class="fas fa-newspaper"></i>
+        <span>Google Form</span></a>
+    </li>
 
     <li class="nav-item">
       <a class="nav-link" href="{{ route('aboutus.index')}}">
