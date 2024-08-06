@@ -12,6 +12,7 @@ use App\Http\Controllers\MagazineController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\PromoPopUpController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\FormLinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::post('/contact-submit', [ContactController::class, 'submitContactForm'])->name('contact.submit');
 Route::get('/news-detail/{id}', [NewsController::class, 'detail'])->name('news.detail');
 Route::get('/magazine-detail/{id}', [MagazineController::class, 'detail'])->name('magazine.detail');
+
+// routes/web.php
+
+Route::get('/form', [FormLinkController::class, 'showForm'])->name('form.show');
+
 // Route untuk menampilkan semua kontak dan detail kontak
 
 
@@ -93,6 +99,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
     Route::get('/contacts/{id}', [ContactController::class, 'show'])->name('contact.show');
+    Route::resource('/form-link', FormLinkController::class);
 });
 
 Route::get('/event', [EventController::class, 'index'])->name('event.index');
