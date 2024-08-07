@@ -1,6 +1,8 @@
 @extends('layouts.guest.header')
 
 @section('content')
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <style>
         .custom-carousel-control {
             background-color: rgba(0, 0, 0, 0.5);
@@ -125,6 +127,9 @@
             margin: auto;
             /* Center the image */
         }
+        .promo-item {
+            padding: 0 10px; /* Add horizontal padding to create space between slides */
+        }
     </style>
 
 
@@ -187,65 +192,18 @@
     </div>
 
     <section class="promo-section">
-        <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner desktop-view">
-                @foreach ($data->chunk(4) as $chunkIndex => $chunk)
-                    <div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
-                        <div class="container">
-                            <div class="row">
-                                @foreach ($chunk as $banner)
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="text-center">
-                                            <a href="#">
-                                                <img src="{{ $banner['BANNER_IMAGE'] }}" class="d-block w-100 promo-img"
-                                                    alt="{{ $banner['BANNER_NAME'] }}">
-                                            </a>
-                                            <div class="promo-desc">
-                                                {{-- <h5>{{ $banner['BANNER_NAME'] }}</h5>
-                                                <p>{{ $banner['BANNER_DESC'] }}</p> --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+        <div id="promoCarousel" class="promo-carousel">
+            @foreach ($data as $banner)
+                <div class="promo-item">
+                    <a href="#">
+                        <img src="{{ $banner['BANNER_IMAGE'] }}" class="d-block w-100 promo-img" alt="{{ $banner['BANNER_NAME'] }}">
+                    </a>
+                    <div class="promo-desc">
+                        {{-- <h5>{{ $banner['BANNER_NAME'] }}</h5>
+                        <p>{{ $banner['BANNER_DESC'] }}</p> --}}
                     </div>
-                @endforeach
-            </div>
-            <div class="carousel-inner mobile-view d-none">
-                @foreach ($data->chunk(1) as $chunkIndex => $chunk)
-                    <div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
-                        <div class="container">
-                            <div class="row">
-                                @foreach ($chunk as $banner)
-                                    <div class="col-12">
-                                        <div class="text-center">
-                                            <a href="#">
-                                                <img src="{{ $banner['BANNER_IMAGE'] }}" class="d-block w-100 promo-img"
-                                                    alt="{{ $banner['BANNER_NAME'] }}">
-                                            </a>
-                                            <div class="promo-desc">
-                                                {{-- <h5>{{ $banner['BANNER_NAME'] }}</h5>
-                                                <p>{{ $banner['BANNER_DESC'] }}</p> --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#promoCarousel"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon custom-carousel-control-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next custom-carousel-control" type="button" data-bs-target="#promoCarousel"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon custom-carousel-control-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+                </div>
+            @endforeach
         </div>
         <div class="col text-center">
             <a href="{{ url('/event') }}" id="read-more-btn" class="btn btn-primary mt-4 custom-button">Read More</a>
@@ -370,7 +328,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
         $('#imageModal').modal('show');
 
@@ -425,7 +383,7 @@
         });
     </script>
 
-    <script>
+    {{-- <script>
         function adjustCarouselView() {
             if (window.innerWidth <= 767.98) {
                 document.querySelector('.desktop-view').classList.add('d-none');
@@ -438,6 +396,29 @@
 
         window.addEventListener('resize', adjustCarouselView);
         window.addEventListener('load', adjustCarouselView);
+    </script> --}}
+    <script>
+        $(document).ready(function(){
+            $('#promoCarousel').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                arrows: true,
+                prevArrow: '<button class="carousel-control-prev custom-carousel-control"><span class="carousel-control-prev-icon custom-carousel-control-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>',
+                nextArrow: '<button class="carousel-control-next custom-carousel-control"><span class="carousel-control-next-icon custom-carousel-control-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>',
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        });
     </script>
     @include('layouts.guest.footer')
 @endsection
